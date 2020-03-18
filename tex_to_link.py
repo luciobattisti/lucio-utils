@@ -10,7 +10,7 @@ from urllib.parse import quote
 # General idea
 # quote = "q(Z) = p(Z|X,\\theta)"
 # quote = "https://latex.codecogs.com/gif.latex?" + urllib.parse.quote(quote)
-# https://latex.codecogs.com/gif.latex?q%28Z%29%20%3D%20p%28Z%20%7C%20X%2C%20%09theta%29
+# https://render.githubusercontent.com/render/math?math=q%28Z%29%20%3D%20p%28Z%20%7C%20X%2C%20%09theta%29
 
 # Open file
 with open(sys.argv[1]) as fp:
@@ -18,8 +18,8 @@ with open(sys.argv[1]) as fp:
 
 # Catch latex math formulas
 tex_to_link = {}
-for tex in re.findall("(\$.+?\$)", data):
-    link = "https://latex.codecogs.com/gif.latex?" + quote(tex.replace("$", "").strip())
+for tex in re.findall("(\$\$?\n?.+?\n?\$?\$)", data):
+    link = "https://render.githubusercontent.com/render/math?math=" + quote(tex.replace("$", "").strip())
     tex_to_link[tex] = link
 
 # Replace tex with link
